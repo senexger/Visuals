@@ -9,7 +9,8 @@ GPIO.setup(3, GPIO.OUT)
 GPIO.setup(8, GPIO.OUT)
 
 clock = 0
-set_pins_for_count(pins, var):
+
+def set_pins_for_count(pins, var):
     for i,pin in enumerate(pins):
         set_pin(pin, clock & 2**i)
 
@@ -26,6 +27,7 @@ while 1:
     if clock == 4:
         clock = 0
     set_pin(3, clock & 1)
-    set_pin(8, clock & 2)
+    set_pin(8, (clock & 2) / 2)
     time.sleep(1)
+    clock += 1
 
